@@ -75,4 +75,3 @@ MongoDB 数据库下载地址 https://1drv.ms/u/s!AhmzONd8r6bOjhOoxJHasJuWADLP
 语法数据 grammars.db.zip 下载地址 https://1drv.ms/u/s!AhmzONd8r6bOjhcUD1du7SNewF_I
 
 ![grammars.png](demo/grammars.png)
-

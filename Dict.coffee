@@ -65,7 +65,7 @@ using (global.Dict = {}), ->
         index = index.trim()
         
         # ------------ 查询英语单词，搜索 《OALD 牛津高阶英汉双解词典》（第8版）
-        if index.match /^[\x00-\x7F]*$/ && !index.match(/^N[1-5]$/)
+        if index.match(/^[\x00-\x7F]*$/) && !index.match(/^N[1-5]$/)
             items = await @search_db(@en, index)
             
             if !is_load_assets then return items
@@ -103,13 +103,13 @@ using (global.Dict = {}), ->
                 items_ = await @search_db(@jp, index, is_start_with=false)
             
             for item, i in items_
-                item.type = 'JP_JTS'
                 
                 first_line = item.content.split('\n')[0]
                 if first_line.startsWith('@@@LINK=')
                     real_index = first_line.replace '@@@LINK=', ''
                     item       = await @jp.findOne index: real_index  
                 
+                item.type = 'JP_JTS'
                 delete item._id
                 items_[i] = item     # save item (ugly hack !!)
             
