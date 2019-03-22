@@ -74,22 +74,34 @@ using (global.Dict = {}), ->
                 item.type = 'EN_OALD'
                 delete item._id
                 
-                item.assets = assets = {}   # 根据链接获取图片资源
-                for line in item.content.split '\n'
-                    if !(m = line.match ///.*src="/(symbols|pic|thumb)/(.+?)\.(.+?)"///) then continue
+                item.assets = {}   # 根据链接获取图片资源
+                for line in item.content.split_lines()
+                    if !(m = line.match ///.*src="/(symbols|pic|thumb)/(.+?)\.(.+?)"///)
+                        continue
+                    
                     asset_key = m[1] + '/' + m[2] + '.' + m[3]
-                    if asset_key in assets       then continue
-                    if asset_key in @assets_cache then assets = @assets_cache[asset_key]; continue
+                    
+                    # 已存在
+                    if asset_key of item.assets
+                        continue
+                    
+                    # 缓存命中
+                    if asset_key of @assets_cache
+                        item.assets[asset_key] = @assets_cache[asset_key]
+                        continue
+                    
                     try
                         buf = fs.readFileSync 'Dict/OALD/' + asset_key
-                        @assets_cache[asset_key] = assets[asset_key] = buf.toString('base64')
+                        @assets_cache[asset_key] = item.assets[asset_key] = buf.toString('base64')
                     catch err
                         if err.code == 'ENOENT' then console.log 'ENOENT:', index, asset_key; continue
                         throw err
                 
                 for pronc in item.proncs # 加载发音（美音），加入 assets
                     pronc_doc = await @en_proncs.findOne index: pronc
-                    assets[ 'proncs/' + pronc + '.spx' ] = pronc_doc.spx.buffer.toString 'base64'  # new Buffer pronc_doc.spx.value() 是错误的方法
+                    
+                    # new Buffer pronc_doc.spx.value() 是错误的方法
+                    item.assets[ 'proncs/' + pronc + '.spx' ] = pronc_doc.spx.buffer.toString 'base64'
         
         else # ------------ 查询日语语法或单词
             # --- 语法
