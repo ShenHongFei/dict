@@ -58,26 +58,35 @@
                 span.level 【レベル】 {{item.level}}
             
             .content(v-for='(c, i) in item.contents')
-                p.mark(v-if='item.contents.length > 1') ({{i+1}})
+                p.item_index(v-if='item.contents.length > 1') ({{i+1}})
                 p.meaning(v-if='c.meaning') 【意味】　{{c.meaning}}
                 p.situation(v-if='c.situation') 【場合】　{{c.situation}}
                 p.continuation(v-if='c.continuation') 【継続】 {{c.continuation}}
                 
                 .sentences(v-if='c.sentences.length')
                     p 【例文】
-                    p.sentence(v-for='s in c.sentences') {{s}}
+                    p.sentence(v-for='s in c.sentences') {{s.replace('/', '　／　')}}
                     br
                 
                 .explainations(v-if='c.explainations && Object.keys(c.explainations).length')
                     p 【説明】
-                    p.explaination_jp(v-for='e in c.explainations.jp') {{e}}
+                    p.explaination_jp(
+                        v-for='e in c.explainations.jp'
+                        v-html='e\
+                            .replace("◆", "<br>◆")\
+                            .replace("×", "✘ ")\
+                            .replace("→", "<br>→")\
+                            .replace("○", "○ ")\
+                            .replace(/◆([^✘])/, "◆ $1")\
+                        '
+                    )
                     br(v-if='c.explainations.jp')
                     p.explaination_cn(v-for='e in c.explainations.cn') {{e}}
                     br
                 
                 .notes(v-if='c.notes')
                     p 【注意】
-                    p {{c.notes}}
+                    p(v-html='c.notes.replace(/([①-⑩])/g, "<br>$1 ").replace(/^<br>/, "")')
                     br
                 
                 pre.confusion(v-if='c.confusion')
@@ -87,7 +96,7 @@
             
             .synonyms(v-if='item.synonyms')
                 p 【シソーラス】
-                p {{item.synonyms}}
+                p(v-html='item.synonyms.join("<br>")')
                 br
             
             .related_words(v-if='item.related_words && item.related_words.length')
@@ -509,6 +518,8 @@
                 margin-top 0
                 margin-bottom 15px
             
+            .item_index
+                font-size 2rem
             
             .related_word
                 line-height 0.8rem
@@ -778,6 +789,4 @@
                     background-color unset
                     color unset
                     text-transform unset
-
-                
 </style>
