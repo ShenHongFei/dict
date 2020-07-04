@@ -1,0 +1,470 @@
+$side_width          = 300px
+$side_width_small    = 200px
+$head_height         = 40px
+$main_width          = "calc(100vw - %s)" % $side_width
+$main_width_small    = "calc(100vw - %s)" % $side_width_small
+$main_height         = "calc(100vh - %s)" % $head_height
+$border_normal_color  = #ccc
+$border_active_color = #666
+
+
+*
+    box-sizing inherit
+
+body, html
+    margin 0
+    height 100%
+    overscroll-behavior-y contain
+
+input
+    border none
+    background-image none
+    background-color transparent
+    box-shadow none
+    &:focus
+        outline none
+    
+div:focus
+    outline none
+
+.root
+    font-family 'MyFont', 'Menlo', '华文细黑', '黑体'
+    height 100%
+    box-sizing border-box
+    
+    .head
+        height $head_height
+        
+        display flex
+        
+        .input
+            flex-grow 1
+            color #000000
+            font-size 1.6rem
+            padding-left 20px
+            
+            &::-webkit-input-placeholder
+                font-size 18px
+                color #aaaaaa
+                
+            
+        .button
+            width 36px
+            cursor pointer
+            background-image url('search.png')
+            background-size 100% 100%
+            border-left 2px solid $border_normal_color
+    
+    
+    .side
+        word-wrap break-word
+        word-break keep-all
+        
+        padding 10px 20px
+        
+        overflow-y scroll
+        
+        position relative
+        
+        &focus
+            border-top-color $border_active_color
+            
+        
+        .index 
+            font-size 18px
+            padding 6px 0
+            cursor pointer
+            
+            .i
+                color#757575
+                width 20px
+                display inline-block
+                
+        .buttons
+            position absolute
+            
+            right 0
+            bottom 0
+            
+            svg
+                width 40px
+                height 40px
+                padding 0 5px
+    
+    .main
+        padding 30px
+        
+        word-break keep-all
+        word-wrap break-word
+        
+        overflow-y scroll
+        
+        &focus
+            border-top-color $border_active_color
+        
+        
+        h2
+            margin-block-start 0
+    
+    
+    .desktop
+        .head
+            border-top   2px solid $border_normal_color
+            border-left  2px solid $border_normal_color
+            border-right 2px solid $border_normal_color
+        
+        .side
+            position absolute
+            top $head_height
+            width $side_width
+            height $main_height
+            
+            border  2px solid $border_normal_color
+            
+            
+        .main
+            position absolute
+            left $side_width
+            top $head_height
+            width $main_width
+            height $main_height
+            
+            border-top    2px solid $border_normal_color
+            border-bottom 2px solid $border_normal_color
+            border-right  2px solid $border_normal_color
+        
+        @media (min-width 700px) and (max-width 1200px)
+            .side
+                width $side_width_small
+            .main
+                left $side_width_small
+                width $main_width_small
+        
+    
+    .mobile
+        height 100%
+        
+        display flex
+        
+        flex-direction column-reverse
+        
+        .head
+            border 2px solid $border_normal_color
+            height 50px
+            min-height 50px
+            
+            .button
+                width 46px
+            
+            .input
+                &-webkit-input-placeholder
+                    font-size 20px
+                    color #aaaaaa
+                
+        
+        .side
+            height 150px
+            min-height 150px
+            
+            border-left  2px solid $border_normal_color
+            border-right 2px solid $border_normal_color
+            border-top   2px solid $border_normal_color
+            
+            flex-shrink 0
+            
+            .index
+                padding 4px 0
+            
+        .main
+            padding 20px
+            
+            flex-grow 1
+            flex-shrink 1
+            
+            border-left  2px solid $border_normal_color
+            border-right 2px solid $border_normal_color
+            border-top   2px solid $border_normal_color
+            
+    
+    // ------------ JP_GRAMMAR
+    .main.JP_GRAMMAR
+        .index
+            line-height 4rem
+            font-size 4rem
+            font-weight normal
+            margin-top 0
+            margin-bottom 15px
+        
+        .item_index
+            font-size 2rem
+        
+        .related_word
+            line-height 0.8rem
+    
+    // ------------ JP_JTS 講談社日中辞典
+    .main.JP_JTS
+        line-height 1.5rem
+        padding-top 15px
+        .index
+            line-height 4rem
+            font-size 4rem
+            font-weight normal
+            margin-top 0
+            margin-bottom 15px
+        // 
+        .exp
+            margin-top 0
+            margin-bottom 0
+            font-weight bold
+            color #0063b4
+            line-height 2rem
+        .egs
+            margin-bottom 1rem
+    
+    
+    // ------------ EN_OALD 牛津高阶英汉双解词典
+    .main.EN_OALD
+        .word-root
+            margin-bottom 1rem
+            font-weight bold
+        .Media
+            cursor pointer
+        .d .chn
+            font-weight bold
+        .gl
+            &:after
+                content ' '
+        a
+            text-decoration none
+        .top-g .z
+            display none
+        .pos
+            display block
+            color #d11000
+            margin-top 1rem
+            font-weight bold
+            font-size 1.2rem
+        .fayin
+            display inline
+        .sd
+            display block
+            font-weight bold
+            margin-top 1rem
+        .cf
+            color #0070C0
+            .swung-dash
+                margin-right .4em
+        .cf[display="block"]
+            display block
+        .pv, .id
+            display block
+            color #0070C0
+            font-weight bold
+        .tx
+            &:before
+                content '　'
+        img
+            border 0
+            max-width 700px
+            &.fayin
+                width 15px
+                height 15px
+            &.img
+                width 1em
+                height 1em
+                margin-left -4px
+                margin-bottom -2px
+            &.Media
+                clear both
+        
+        .h-g .top-g .h
+            font-size 4rem
+            display block
+            margin-bottom 20px
+        
+        .id-g
+            display inline
+        .revout + .id-g, .z + .pv-g
+            display block
+        .revout
+            font-weight bold
+            margin-top 1rem
+            display block
+            &:before
+                content "【"
+            &:after
+                content "】"
+        span.arbd1, span.dhb, span.fm, span.unei, .ndv, .cl, .ei, .ndv
+            padding-right 0.2em
+        span.unsyn, span.unfm, .eb
+            padding-right 0.2em
+            text-transform uppercase
+            font-size smaller
+            color #C76E06
+        .ungi, .gi, .g
+            color green
+            font-style italic
+        .label-g
+            color green
+            .chn
+                display inline
+                &:before
+                    content ""
+        .dr-g
+            display block
+        .phon-gb, .phon-us
+            color red
+        .z_phon-us
+            display none
+        .alt[q="also"]
+            display block
+        .n-g
+            display block
+            margin-bottom 2rem
+        .x-g
+            display block
+            margin-left 2em
+        .n-g .xr-g
+            margin-left 2em
+        .xr-g
+            display block
+        .z_ei-g
+            display none
+        .sense-g
+            display block
+        .block-g
+            display block
+        .ids-g, .pvs-g
+            display block
+        .infl
+            display block
+        .para
+            display block
+        .wordbox
+            display block
+            margin-left 18px
+            margin-right 18px
+            padding 5px 16px
+            border-radius 10px
+            border-color #C76E06
+            border-style ridge
+            clear both
+        .word
+            display table-cell
+            background-color #C76E06
+            color #FAFAFA
+            text-transform uppercase
+        .wfw
+            display inline
+        .unbox
+            display block
+            padding-left 2px
+        .tab
+            display table-cell
+            background-color #C76E06
+            color #FAFAFA
+            text-transform uppercase
+            text-align left
+        .title
+            display block
+            text-transform uppercase
+            font-size small
+        .table
+            display table
+            margin 12px 0 8px 0
+        .tr
+            display table-row
+        .td
+            display table-cell
+            margin-right 10px
+        .th
+            display table-cell
+            color #C76E06
+            text-transform uppercase
+        .althead
+            text-transform uppercase
+        .patterns
+            display block
+            clear both
+            .althead
+                display table-cell
+                margin 0px auto 0px auto
+                text-transform uppercase
+            .para
+                -ms-word-break break-all
+                word-break break-word
+                -webkit-hyphens auto
+                -moz-hyphens auto
+                hyphens auto
+        .help
+            display block
+        .symbols-coresym
+            color green
+            display inline-block
+        .symbols-small_coresym
+            color green
+            display inline-block
+            font-size 70%
+            top -.1em
+            margin-right .15em
+        .symbols-xsym
+            display none
+        .symbols-xrsym
+            font-style normal
+            color #555555
+            margin-right .25em
+        .symbols-helpsym, .symbols-synsym, .symbols-awlsym, .symbols-oppsym, .symbols-etymsym, .symbols-notesym
+            color rgb(255, 255, 255)
+            background rgb(183, 128, 50)
+            font-size 65%
+            padding 1px 3px 2px
+            display inline-block
+            margin 0 .4em 0 0
+            text-transform uppercase
+            top -1px
+            line-height 1em
+            border-radius 1px
+        .symbols-oppsym
+            background darkred
+        .symbols-drsym
+            font-size 70%
+            color rgb(0, 0, 0)
+        .symbols-para_square
+            color rgb(80, 80, 80)
+            font-size 65%
+        .symbols-synsep
+            color rgb(80, 80, 80)
+            font-size 65%
+        span#wx
+            text-decoration line-through
+        span#unwx
+            text-decoration line-through
+        swung-dash
+            visibility hidden
+            &::after
+                visibility visible
+                content "\007E \0020"
+        .pv-g
+            .swung-dash
+                visibility hidden
+                &::after
+                    visibility visible
+                    content "\007E \0020"
+        .z_n
+            display none
+        .symbols-small_coresym
+            display none
+        .z_ab
+            color green
+        .gr, .subject
+            color green
+        .dr
+            color blue
+    
+        #cigencizui-content
+            .word
+                display unset
+                background-color unset
+                color unset
+                text-transform unset
+

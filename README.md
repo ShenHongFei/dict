@@ -1,4 +1,4 @@
-# Dict http://shenhongfei.site/Dict/
+# Dict  https://shenhongfei.com/dict/
 
 ## 简介
 
@@ -12,9 +12,9 @@
 
 ## 预览
 
-![2](demo/2.png?raw=true)
+![2](demo/2.png)
 
-![1](demo/1.png?raw=true)
+![1](demo/1.png)
 
 ![3](demo/3.png)
 
@@ -36,23 +36,23 @@ Esc 聚焦输入框并清空
 
 #### 焦点位于输入框
 
-Enter 查询单词（正则表达式）
+Enter       查询单词（正则表达式）
+Enter × 2   Google Search
 
 #### 焦点不位于输入框
 
-| 按键          | 功能                             |
-| ------------- | -------------------------------- |
-| Tab/Shift+Tab | 上下移动条目                     |
-| e             | 聚焦输入框编辑查询内容（不清空） |
-| f 或 s        | 聚焦输入框输入查询内容（清空）   |
-| j/J           | 向下滚动／直达底部               |
-| k/K           | 向上滚动／直达顶部               |
-| h             | 后退，转到上一个历史查询词条     |
-| l             | 前进，转到下一个历史查询词条     |
-| Enter (双击)  | Google Search                    |
-| 1 - 9         | 切换至对应编号条目               |
-
 (大写字母表示按住 Shift + 相应按键)
+
+| 按键    | 功能                                                           |
+| ------- | -------------------------------------------------------------- |
+| tab/TAB | 下一个／上一个 条目                                            |
+| e       | 聚焦输入框编辑查询内容（不清空）                               |
+| f 或 s  | 聚焦输入框，并输入查询内容（清空），若当前有选中内容则直接搜索 |
+| j/J     | 向下滚动／直达底部                                             |
+| k/K     | 向上滚动／直达顶部                                             |
+| d 或 h  | 后退，转到上一个历史查询词条                                   |
+| g 或 l  | 前进，转到下一个历史查询词条                                   |
+| 1 - 9   | 切换至对应编号条目                                             |
 
 ## 数据
 
@@ -66,9 +66,9 @@ MongoDB 数据库下载地址 https://1drv.ms/u/s!AhmzONd8r6bOjhOoxJHasJuWADLP
 
 下载后使用 mongoimport 导入
 
-![MongoDB](demo/mongodb-01.png?raw=true)
+![MongoDB](demo/mongodb-01.png)
 
-![MongoDB](demo/mongodb-02.png?raw=true)
+![MongoDB](demo/mongodb-02.png)
 
 
 
