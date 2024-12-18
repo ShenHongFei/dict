@@ -1,4 +1,4 @@
-# Dict  https://shenhongfei.com/dict/
+# Dict  https://shenhongfei.com:9443/dict/
 
 ## 简介
 
